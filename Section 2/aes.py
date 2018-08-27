@@ -62,11 +62,16 @@ class AES:
         self.K = [
             [0] * 4 for i in xrange(self.rounds + 1)
         ]
-        for i in xrange(len(key) // 4):
+        self.K_inverse = [
+            [0] * 4 for i in xrange(self.rounds + 1)
+        ]
+        for i in xrange(4):
             x = struct.unpack('>i', key[4 * i : 4 * i + 4])[0]
             self.K[i // 4][i % 4] = x
+            self.K_inverse[self.rounds - i // 4][i % 4] = x
 
-        print self.K
+    def _key_expansion(self):
+        
 
 
 if __name__ == '__main__':
