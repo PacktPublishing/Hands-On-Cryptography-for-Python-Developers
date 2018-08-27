@@ -1,6 +1,6 @@
 from field import modinv
 
-class RSA:
+class SchoolbookRSA:
 
     def __init__(self, p, q, e=65537):
         self.p = p
@@ -21,7 +21,7 @@ class RSA:
 
 
 if __name__ == '__main__':
-    rsa = RSA(61,53)
+    rsa = SchoolbookRSA(61,53)
 
     encrypted = rsa.encrypt(7)
     print encrypted
