@@ -1,6 +1,7 @@
 import os
 import hashlib
 
+
 class ProofOfWork:
 
     def __init__(self, difficulty):

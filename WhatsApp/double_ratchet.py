@@ -36,13 +36,17 @@ class Client:
             self.send_dh_ratchet()
             self.other_client.receive_dh_ratchet()
         self.seq += 1
+
         # do a kdf update to get message key
         message_key = self.state.update()
+
         # encrypt the message
         encrypted_message = self.encrypt(message)
+
         # print to debug
         debug(self.name, "sends message", message, "encrypted as",
               encrypted_message, "key =", message_key)
+
         # signal to other client to receive
         self.other_client.receive(encrypted_message)
 
@@ -65,13 +69,15 @@ class Client:
         self.state.setup(self.sk, self.other_client.state.dh.public_key)
         debug(self.name, "receives DH ratchet")
 
-
+# create clients
 alice = Client("Alice")
 bob = Client("Bob")
 
+# connect them
 alice.connect(bob)
 bob.connect(alice)
 
+# simulate a chat session
 alice.send("hello")
 alice.send("whatsapp?")
 bob.send("hi")

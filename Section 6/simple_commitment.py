@@ -2,6 +2,8 @@ import os
 import random
 import hashlib
 
+# let us play a game of resolving conflicts
+# please add lizard and spock for more excitement
 OUTCOMES = ["rock", "paper", "scissor"]
 
 
@@ -43,18 +45,23 @@ if __name__ == "__main__":
     # player 1 picks a move and commits
     s1 = SimpleCommitment()
     commitment1 = s1.commit(flip())
+
     # player 2 does a move and commits
     s2 = SimpleCommitment()
     commitment2 = s2.commit(flip())
+
     # make commitments public
     print("s1: {}".format(commitment1))
     print("s2: {}".format(commitment2))
+
     # wait until both parts have gotten the commitments
     r1, move1 = s1.reveal()
     r2, move2 = s2.reveal()
+
     # verify that commitments are ok
     s1.verify(commitment2, r2, move2)
     s2.verify(commitment1, r1, move1)
+
     # reolve the winner
     winner = resolve(move1, move2)
     if winner == 0:

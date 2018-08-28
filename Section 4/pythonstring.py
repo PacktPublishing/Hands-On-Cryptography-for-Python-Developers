@@ -19,8 +19,11 @@ class PythonString:
         return ctypes.c_int64(h % 2**64).value
 
 if __name__ == '__main__':
+    # this is our 'simulated' python-string object
     pstr = "this is a Python string"
     p = PythonString(pstr)
+
+    # make sure it does confirm with the internal hash
     assert(p.hash() == hash(pstr))
 
     # it is trivial to create collision in python too!
@@ -28,7 +31,9 @@ if __name__ == '__main__':
     string2 = "\x00\x00\x00\x00\x00\x01\x02"
     string3 = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x09"
 
+    # make sure they really are collisons
     assert(hash(string1) == hash(string2))
     assert(string1 != string2)
+    
     # in some implementations, this could be exploited!
     # hence, never use python's hash function for crypto.

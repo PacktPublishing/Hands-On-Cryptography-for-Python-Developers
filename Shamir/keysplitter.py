@@ -12,6 +12,7 @@ class KeySplitter:
     def split(self, numshares, threshold, key):
         xshares = [''] * numshares
         yshares = [''] * numshares
+
         # For each symbol in the key split into shares over GF(2^8)
         for char in key:
             xcords, ycords = self.splitter.split(
@@ -24,10 +25,12 @@ class KeySplitter:
 
     def unsplit(self, shares):
         recovered = ''
+
         # For each sub share (corresponding to symbol in key)...
         for idx in range(len(shares[0][0])):
             xcords = []
             ycords = []
+            
             # Compute the secret value
             for xcord, ycord in shares:
                 xcords += [ord(xcord[idx])]

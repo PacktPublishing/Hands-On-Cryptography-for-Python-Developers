@@ -14,6 +14,7 @@ class JavaString:
         return ctypes.c_int32(h % 2**32).value
 
 if __name__ == '__main__':
+    # create a fictional java-string object
     j = JavaString("this is a Java string")
     print(j.hash())
 
