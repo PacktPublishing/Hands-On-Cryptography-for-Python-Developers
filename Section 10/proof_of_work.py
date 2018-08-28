@@ -13,6 +13,9 @@ class ProofOfWork:
     def verify(self, proof):
         h = hashlib.sha256(self.challenge_string + proof)
         hi_bits = bin(int(h.hexdigest(), 16))[2:].zfill(h.digest_size * 8)
+        # quite inefficient comparison, this does however only pose
+        # a problem for the solver, which should implement a faster
+        # simulator for its own purposes.
         if hi_bits[:self.difficulty] == "0" * self.difficulty:
             return True
         return False
