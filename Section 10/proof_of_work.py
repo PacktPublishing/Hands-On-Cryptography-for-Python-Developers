@@ -14,6 +14,7 @@ class ProofOfWork:
     def verify(self, proof):
         h = hashlib.sha256(self.challenge_string + proof)
         hi_bits = bin(int(h.hexdigest(), 16))[2:].zfill(h.digest_size * 8)
+
         # quite inefficient comparison, this does however only pose
         # a problem for the solver, which should implement a faster
         # simulator for its own purposes.
@@ -29,7 +30,10 @@ class Solver:
         self.challenge_string = challenge_string
 
     def solve(self):
-        # create a simulated verifier
+        # create a simulated verifier, for a real-world scenario
+        # the verifier should be implemented more efficiently.
+        # for instance, in bitcoin, asics are highly efficient
+        # implementions of the simulator.
         simulated_verifier = ProofOfWork(self.difficulty)
         simulated_verifier.challenge_string = self.challenge_string
         while True:
@@ -41,10 +45,13 @@ class Solver:
 if __name__ == '__main__':
     # proof of work requiring ~ 2^18 iterations
     p = ProofOfWork(18)
+
     # generate challenge
     challenge, difficulty = p.challenge()
+
     # create a solver
     s = Solver(challenge, difficulty)
+
     # and solve corresponding challenge
     proof = s.solve()
     assert(p.verify(proof))
