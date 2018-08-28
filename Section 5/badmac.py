@@ -1,5 +1,6 @@
 import hashlib
 
+
 class BadMAC:
 
     def __init__(self, key, message):
@@ -12,6 +13,7 @@ class BadMAC:
 
     def hexdigest(self):
         return self.hashfunction.hexdigest()
+
 
 class LengthExtension:
 

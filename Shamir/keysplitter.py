@@ -1,5 +1,8 @@
-import json, base64, os
+import json
+import base64
+import os
 from shamir import *
+
 
 class KeySplitter:
 
@@ -11,7 +14,8 @@ class KeySplitter:
         yshares = [''] * numshares
         # For each symbol in the key split into shares over GF(2^8)
         for char in key:
-            xcords, ycords = self.splitter.split(numshares, threshold, ord(char))
+            xcords, ycords = self.splitter.split(
+                numshares, threshold, ord(char))
 
             for idx in range(numshares):
                 xshares[idx] += chr(xcords[idx])
@@ -45,7 +49,7 @@ class KeySplitter:
 if __name__ == "__main__":
     shares = 30
     threshold = 20
-    print ('Running test instances (30, 20) with 100 independent keys...')
+    print('Running test instances (30, 20) with 100 independent keys...')
     for i in range(100):
         secret_key = os.urandom(64)
         splitter = KeySplitter()

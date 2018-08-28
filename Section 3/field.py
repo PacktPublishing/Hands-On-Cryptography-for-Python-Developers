@@ -4,6 +4,7 @@ def extended_gcd(a, b):
     g, y, x = extended_gcd(b % a, a)
     return (g, x - (b // a) * y, y)
 
+
 def modinv(a, m):
     g, x, y = extended_gcd(a % m, m)
     if g != 1:

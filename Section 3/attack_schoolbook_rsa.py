@@ -1,6 +1,6 @@
 from schoolbook_rsa import SchoolbookRSA
 
-rsa = SchoolbookRSA(61,53)
+rsa = SchoolbookRSA(61, 53)
 encrypted1 = rsa.encrypt(7)
 encrypted2 = rsa.encrypt(3)
 # Schoolbook RSA is malleable, meaning that we can

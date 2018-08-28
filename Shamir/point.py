@@ -1,5 +1,6 @@
 from tables import *
 
+
 class Point:
 
     def __init__(self, value):
@@ -21,7 +22,8 @@ class Point:
         if point.value == 0 or self.value == 0:
             self.value = 0
         else:
-            self.value = expTable[(logTable[self.value] + logTable[point.value]) % 255]
+            self.value = expTable[
+                (logTable[self.value] + logTable[point.value]) % 255]
         return self
 
     def __div__(self, point):
@@ -32,5 +34,6 @@ class Point:
     def __idiv__(self, point):
         if point.value == 0:
             raise ArithmeticError('Division by zero')
-        self.value = expTable[(255 + logTable[self.value] - logTable[point.value]) % 255]
+        self.value = expTable[
+            (255 + logTable[self.value] - logTable[point.value]) % 255]
         return self

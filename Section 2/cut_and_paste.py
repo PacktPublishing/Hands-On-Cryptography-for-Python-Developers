@@ -22,4 +22,4 @@ plaintext2 = " that can be revealed to anyone!"
 cipertext1 = cipher.encrypt(plaintext1)
 cipertext2 = cipher.encrypt(plaintext2)
 
-print [cipher.decrypt(iv + cipertext1 + cipertext2)]
+print[cipher.decrypt(iv + cipertext1 + cipertext2)]

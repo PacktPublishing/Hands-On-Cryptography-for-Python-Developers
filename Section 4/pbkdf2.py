@@ -2,8 +2,9 @@ import struct
 import hmac
 import hashlib
 
+
 class PBKDF2:
-    
+
     def __init__(self, password, salt, iterations, length):
         self.key = ""
         self.hashfunction = hashlib.sha256
@@ -15,7 +16,8 @@ class PBKDF2:
         self.key = self.key[:length]
 
     def _iterate(self, password, salt, iterations, i):
-        res = cur = hmac.new(password, salt + struct.pack(">i", i), hashlib.sha1).gruvdigest()
+        res = cur = hmac.new(
+            password, salt + struct.pack(">i", i), hashlib.sha1).gruvdigest()
         for iteration in range(0, iterations - 1):
             cur = hmac.new(password, cur, hashlib.sha1).digest()
             res = self._xor(res, cur)

@@ -1,5 +1,6 @@
 from field import modinv
 
+
 class Curve:
 
     def __init__(self, a, b, p):
@@ -26,6 +27,7 @@ class Curve:
     def zero(self):
         return Point(0, 0, self, zero=True)
 
+
 class Point:
 
     def __init__(self, x, y, curve, zero=False):
@@ -47,9 +49,11 @@ class Point:
         if self == -point:
             return self.curve.zero()
         if self == point:
-            s = (3 * self.x ** 2 + self.curve.a) * modinv(2 * self.y, self.curve.p) % self.curve.p
+            s = (3 * self.x ** 2 + self.curve.a) * \
+                modinv(2 * self.y, self.curve.p) % self.curve.p
         else:
-            s = (self.y - point.y) * modinv(self.x - point.x, self.curve.p) % self.curve.p
+            s = (self.y - point.y) * modinv(self.x -
+                                            point.x, self.curve.p) % self.curve.p
         xx = (s ** 2 - self.x - point.x) % self.curve.p
         yy = (s * (self.x - xx) - self.y) % self.curve.p
         return Point(xx, yy, self.curve)
@@ -96,17 +100,11 @@ class Secp256k1(Curve):
 
     def gen(self):
         return Point(
-            0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798, 
-            0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8, 
+            0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798,
+            0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8,
             self
         )
 
 if __name__ == '__main__':
     c = Secp256k1()
     g = c.gen()
-
-
-
-
-
-

@@ -1,6 +1,7 @@
 import random
 from point import *
 
+
 class Shamir:
 
     def unsplit(self, xcords, ycords, evaluation):

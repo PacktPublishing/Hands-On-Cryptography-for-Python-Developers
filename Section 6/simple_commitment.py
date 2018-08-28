@@ -4,8 +4,10 @@ import hashlib
 
 OUTCOMES = ["rock", "paper", "scissor"]
 
+
 def flip():
     return OUTCOMES[random.randint(0, 2)]
+
 
 def resolve(move1, move2):
     if move1 == move2:
@@ -14,6 +16,7 @@ def resolve(move1, move2):
         return 1
     else:
         return 2
+
 
 class SimpleCommitment:
 
