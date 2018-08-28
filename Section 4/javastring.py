@@ -1,3 +1,5 @@
+import ctypes
+
 class JavaString:
 
     def __init__(self, s):
@@ -8,7 +10,7 @@ class JavaString:
         n = len(self.string)
         for i in xrange(n):
             h += ord(self.string[i]) * pow(31, n-1-i, 2**32)
-        return h
+        return ctypes.c_int32(h % 2**32).value
 
 if __name__ == '__main__':
     j = JavaString("this is a Java string")

@@ -9,7 +9,8 @@ def attack(blocksize, known):
     lookup = {}
     for char in range(0, 256):
         lookup[bo.encryption_oracle(
-            prefix + known + chr(char))[index * 16:index * 16 + 16]] = chr(char)
+            prefix + known + chr(char)
+        )[index * 16:index * 16 + 16]] = chr(char)
     substring = bo.encryption_oracle(prefix)[16 * index:16 * index + 16]
     if lookup.has_key(substring):
         return lookup[substring]
