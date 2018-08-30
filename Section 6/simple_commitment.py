@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # wait until both parts have gotten the commitments
     r1, move1 = s1.reveal()
-    r2, move2 = s2.reveal()
+    r2, move2 = s2.reveal() carl
 
     # verify that commitments are ok
     s1.verify(commitment2, r2, move2)
