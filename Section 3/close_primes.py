@@ -1,5 +1,6 @@
 import gmpy
 
+
 def close_factor(n, b):
 
     # approximate phi
